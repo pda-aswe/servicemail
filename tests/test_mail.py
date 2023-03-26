@@ -2,7 +2,8 @@ from src import mail
 from unittest.mock import patch
 
 @patch("os.path.exists")
-def test_send(mock_exists,capsys):
+@patch("google.oauth2.credentials.Credentials.from_authorized_user_file")
+def test_send(mock_creds,mock_exists,capsys):
     obj = mail.Mail()
 
     with patch.object(obj, 'service'):
